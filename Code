@@ -1,0 +1,36 @@
+from playsound import playsound
+import time
+
+def alarm(seconds):
+    """
+    Function to set an alarm for a specified number of seconds.
+    Displays a countdown timer and plays an alarm sound when the timer expires.
+    """
+    time_elapsed = 0
+
+    # Start the countdown timer
+    while time_elapsed < seconds:
+        # Pause for 1 second
+        time.sleep(1)
+        time_elapsed += 1
+
+        # Calculate the time left in minutes and seconds
+        time_left = seconds - time_elapsed
+        minutes_left = time_left // 60
+        seconds_left = time_left % 60
+
+        # Display the countdown timer in the format MM:SS
+        print(f"{minutes_left:02d}:{seconds_left:02d}")
+
+    # Play the alarm sound when the timer expires
+    playsound("alarm.mp3")
+
+# Get user input for minutes and seconds
+minutes = int(input("How many minutes to wait: "))
+seconds = int(input("How many seconds to wait: "))
+
+# Calculate the total number of seconds
+total_seconds = minutes * 60 + seconds
+
+# Call the alarm function with the total number of seconds
+alarm(total_seconds)
